@@ -1,0 +1,980 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PET MENTOR</title>
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Bootstrap 5 Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	
+<style>
+
+	
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+	/* ตั่งค่าสีพื้นฐาน */		
+:root{
+--blue:#4971a5;
+--whiteblue:#a6cbfe;
+--sky:#dfecff;
+--light-color:#666;
+--box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+
+	
+}
+	
+	
+	*{
+		font-family:"Nunito", serif;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		text-decoration: none;
+		border: none;
+		/*text-transform: ;  จัดตัวอักษรหน้า*/
+		transition: all .2s linear; /* แว่ยขยายหมุน */
+	}
+	html{
+		font-size: 10px;
+		scroll-behavior: smooth; /* การเลื่อนจะมีความลื่นไหล */
+	}
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		background: var(--blue);
+		padding: 1pt 5%;
+		display:flex;
+		align-items:center;
+		justify-content: space-between;
+		z-index: 1000; /* ทำให้ nav bar ไม่ถูกซ่อน*/
+		box-shadow: var(--box-shadow);
+		
+		
+	}
+	
+	header .navbar a{          /* 1rem = 16px*/
+		font-size: 15px;; 
+		border-radius: 2rem;
+		padding:1rem ;
+		color: #fff;
+		text-decoration: none; /* ลบตัวขีดเส้นใต้ออก */
+		margin-left: 5rem;
+		text-transform: uppercase;
+		font-weight: bold;
+		
+	}
+	
+	
+	
+	header .icon i {
+		cursor: pointer; /* เมื่อเอาเม้าส์ไปชี้เมา์จะขึ้นเป็น pointer */
+		margin-left: .5rem;
+		height: 4.5rem;
+		line-height: 4.5rem; /* กำหนดช่องว่างระหว่างบรรทัด */
+		width: 4.5rem;
+		text-align: center;
+		font-size: 1.7rem;
+		color:black;
+		border-radius: 50%;
+		background-color:var(--whiteblue);
+		
+	}
+	header .icon i:hover{
+		color: #000;
+		background:#fff;
+		transform: rotate(360deg); /* icon search bar หมุน 360 องศา*/
+	}
+	
+	header .icon #menu-bars{   /* hamburger menu*/
+		display: none;
+	}
+
+	
+	#search-form{            /* เป็น search form ที่กดไปแล้วจะเป็นหน้าเทา*/
+		position: fixed;
+		top: -110%;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 1004;
+		background: rgba(0,0,0,.8);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding:0 1rem;
+	}
+	
+	#search-form.active{
+		top: 0;
+	}
+	
+	#search-form #search-box{ /* ส่วนใส่ข้อมูลใน search form */
+		width: 50rem;
+		border-bottom: .1rem solid #fff; /* เส้นใต้ในหน้า search form */
+		padding: 1rem 0;
+		color: #fff;
+		font-size: 3rem;
+		background: none;
+	}
+	
+	#search-form #search-box:placeholder{
+		color: #eee;
+	}
+	
+	
+	#search-form lable{ /* icon แว่นขยาย ในหน้า search form*/
+		color: #fff;
+		cursor: pointer;
+		font-size: 3rem;
+	}
+	
+	#search-form lable:hover{
+		color:green;
+	}
+	
+	#search-form #close{ /*icon ออก จากหน้า search form*/
+		position: absolute; /* เป็นการให้อิสระกับตำแหน่ง สามารถเอาไปแยู่ตรงไหนก็ได้ แล้วค่อยกำหนดตำแหน่ง*/
+		color: #fff;
+		cursor: pointer;
+		top: 2rem;
+		right: 3rem;
+		font-size: 5rem;
+		
+	}
+	
+	
+	/* start Carousel*/
+	
+	.button {
+  background: var(--blue); /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+	}
+	.button1 {
+  	background-color: white; 
+  	color: black; 
+  	border: 2px solid #4971a5;
+	border-radius: 100px;
+		font-size: 20px;
+	}
+
+ 	.button1:hover {
+  	background:var(--blue);
+  	color: white;
+	}
+	
+	.zoom{
+		transition: transform .5s;
+		
+	}
+	
+	.zoom:hover {
+		transform: scale(1.1);
+		opacity: 0.8;
+	}
+	
+	
+	.filterDiv {
+		float: left;
+		width: 30%;
+		text-align: center;
+		margin: 10px;
+		display: none;
+}
+
+.show {
+	display: block;
+}
+
+.containerstar {
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+/* Style the buttons */
+.btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: var(--blue);
+    cursor: pointer;
+    color: #fff;
+    margin: 6px;
+    width: 200px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    background-color: var(--whiteblue);
+    color: var(--blue);
+    transform: translateY(-2px);
+}
+
+.btn.active {
+    background-color: var(--whiteblue);
+    color: var(--blue);
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    font-weight: bold;
+    border: 2px solid var(--blue);
+}
+
+/* ปรับปรุงไอคอนในปุ่ม */
+.btn i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+
+.btn.active i {
+    color: var(--blue);
+}
+
+/* ปรับ container ของปุ่ม */
+#myBtnContainer {
+    background: rgba(73, 113, 165, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 150px;
+        font-size: 16px;
+        margin: 4px;
+    }
+    
+    #myBtnContainer {
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+}
+	
+	/*start top-to */
+	.to-top{ 
+	background:var(--whiteblue);
+	position: fixed;
+	bottom: 16px;
+	right: 35px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 32px;
+	color:white;
+	text-decoration: none;
+	opacity: 0;
+	pointer-events: none;
+	transition: all .4s;
+		
+	}
+	
+	.to-top:hover{
+	background: var(--blue);
+	color: white;
+	}
+	
+	.to-top.active{
+	bottom: 32px;
+	pointer-events: auto;
+	opacity: 1;
+	}
+	/*end top-to */
+	
+	/* Show ham-menu resposive (start)*/
+	
+	@media(max-width:991px){
+		html{
+			font-size: 55%;
+		}
+		header{
+			padding:1rem 2rem; 
+		}
+	}
+	
+	@media(max-width:768px){
+		header .icon #menu-bars{
+			display:inline-block;
+		} 
+		
+		header .icon #profile-icon{
+			display:none;
+		}
+		
+		header img{
+			height: 50px;
+			width: 50px;
+		}
+		
+		header .navbar{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background-color: var(--blue);
+			border-top: .1rem solid rgb(0,0,0,.2);
+			border-bottom: .1rem solid rgb(0,0,0,.2);
+			padding: 1rem;
+			clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);/* ใช้ตัดบางส่วนของรูปภาพ*/
+			
+		}
+		
+		header .navbar.active{
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+		}
+		
+		header .navbar a{
+			display: block;
+			flex-direction: column;
+			padding: 1.5rem;
+			margin: 1rem;
+			font-size: 2rem;
+			background: var(--whiteblue);
+			text-align: center;
+			font-weight: bold;
+		}
+		
+		
+		
+	}
+	
+	@media (max-width:991px){
+		
+		html{
+			font-size:50%;
+		}
+	}
+	
+	
+	
+	
+	/* Show hamburger menu resposive (end)*/
+	
+	.shadow-text-header{
+		text-shadow: #fff 6px 0 0,#fff 5.91686px .995377px 0,#fff 5.66974px 1.96317px 0,#fff 5.2655px 2.87655px 0,#fff 4.71532px 3.71022px 0,#fff 4.03447px 4.44106px 0,#fff 3.24181px 5.04883px 0,#fff 2.35931px 5.51667px 0,#fff 1.41143px 5.83163px 0,#fff .424423px 5.98497px 0,#fff -.574341px 5.97245px 0,#fff -1.55719px 5.79441px 0,#fff -2.49688px 5.45578px 0,#fff -3.36738px 4.96596px 0,#fff -4.14455px 4.33852px 0,#fff -4.80686px 3.59083px 0,#fff -5.33596px 2.74364px 0,#fff -5.71718px 1.8204px 0,#fff -5.93995px .84672px 0,#fff -5.99811px -.150428px 0,#fff -5.89004px -1.14341px 0,#fff -5.61874px -2.1047px 0,#fff -5.19172px -3.00766px 0,#fff -4.62082px -3.82727px 0,#fff -3.92186px -4.54081px 0,#fff -3.11421px -5.12852px 0,#fff -2.22026px -5.57409px 0,#fff -1.26477px -5.86518px 0,#fff -.274238px -5.99373px 0,#fff .723898px -5.95617px 0,#fff 1.70197px -5.75355px 0,#fff 2.63288px -5.39147px 0,#fff 3.49082px -4.87998px 0,#fff 4.25202px -4.23324px 0,#fff 4.89538px -3.46919px 0,#fff 5.40307px -2.60899px 0,#fff 5.76102px -1.67649px 0,#fff 5.95932px -.697531px 0,rgba(0,0,0,.3) 0 7px 7px;
+	}
+	
+	/* เพิ่ม CSS สำหรับ active state ของ navbar */
+	header .navbar a.active {
+		background: var(--whiteblue);
+		color: var(--blue);
+		padding: 1rem 2rem;
+		border-radius: 2rem;
+	}
+
+	/* ปรับปรุง responsive design */
+	@media (max-width: 1200px) {
+		header .navbar a {
+			margin-left: 2rem;
+		}
+	}
+
+	@media (max-width: 991px) {
+		html {
+			font-size: 55%;
+		}
+		header {
+			padding: 1rem 2rem;
+		}
+		.card {
+			width: 45% !important;
+			margin: 10px auto !important;
+		}
+		.filterDiv {
+			width: 45% !important;
+		}
+	}
+
+	@media (max-width: 768px) {
+		header .icon #menu-bars {
+			display: inline-block;
+		}
+		
+		header .navbar {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: var(--blue);
+			border-top: .1rem solid rgba(0,0,0,.2);
+			padding: 1rem;
+			clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+		}
+		
+		header .navbar.active {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+		}
+		
+		header .navbar a {
+			display: block;
+			padding: 1.5rem;
+			margin: 1rem;
+			font-size: 2rem;
+			background: var(--whiteblue);
+			text-align: center;
+		}
+		
+		header .navbar a.active {
+			background: var(--blue);
+			color: white;
+		}
+
+		.card {
+			width: 90% !important;
+			margin: 10px auto !important;
+		}
+		
+		.filterDiv {
+			width: 90% !important;
+		}
+		section{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		section div img{
+			border-radius: 50px;
+			object-fit: contain;
+			
+			
+		}
+		.contactusandmap1{
+			padding: 5rem;
+			border-top-right-radius: 2rem;
+			border-bottom-right-radius: 2rem;
+		}
+		.contactusandmap2 iframe{
+			border-top-left-radius: 2rem;
+			border-bottom-left-radius: 2rem;
+		}
+		
+		
+			
+			
+		}
+	
+
+	@media (max-width: 576px) {
+		html {
+			font-size: 50%;
+		}
+		.display-1 {
+			font-size: 2.5rem;
+		}
+	}
+	
+</style>
+</head>
+
+<body>
+	
+	<!-- เพิ่ม overlay สำหรับ hamburger menu -->
+	<div class="menu-overlay"></div>
+	
+	<header>
+		
+		<a href="#"><img src="../Photo/LOGOPETDENTOR.png" alt="Logo" height="80px" width="80px" style="margin-bottom: 1.5rem;margin-top: 1.5rem"></a>
+
+		<nav class="navbar">
+			<a href="../Pet_Health/cat/page_pethealth_cat_page1.html" >Pet Health</a>
+			<a href="../Pet_Modeling/Pet_modeling_page/petmodeling_allpet_page.html">Pet Modeling</a>
+			<a href="../Pet_Breeds/page_petbreeds_page.html">Pet Breeds</a>
+			<a href="#contactus">Contact us</a>
+		</nav>
+
+		<div class="icon">
+			<i class="fas fa-bars" id="menu-bars"></i>
+			<i class="fas fa-search" id="search-icon"></i>
+			
+			
+		</div>
+		
+	</header>
+	<!-- header end and ham-menu-->
+	
+	
+	
+	<!-- start search form-->
+	<form id="search-form">
+		<input type="search" placeholder="ค้นหา..." name="" id="search-box">
+		<lable fpr="search-box" class="fas fa-search"></lable>
+		<i class="fas fa-times" id="close"></i>
+	</form>
+	
+	
+
+ 
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <div class="carousel-item active" data-bs-interval="3000">
+      <img src="../Photo/B.jpg" class="d-block w-100" alt="First slide" style="aspect-ratio:16/9;object-fit: cover;opacity: 0.9;">
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="../Photo/B.jpg" class="d-block w-100" alt="Second slide" style="aspect-ratio:16/9;object-fit: cover;opacity: 0.9;">
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="../Photo/B.jpg" class="d-block w-100" alt="Third slide" style="aspect-ratio:16/9;object-fit: cover;opacity: 0.9;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+	
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+	
+	<section class="container d-flex">
+		<div class="display-1 font-weight-bold shadow-text-header">Don't Miss</div>
+		<div></div>
+	</section>
+	<br>
+	<br>
+	<br>
+	
+	<section class="container d-flex flex-wrap">
+		
+		<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+			<img class="card-img-top w-100 zoom" src="../Pet_Health/PETHEALT_CAT_PHOTO_HEADCONTENT/2.png" alt="photo" style="aspect-ratio:16/9;border-radius: 2rem;">
+			<div class="card-body">
+				<h5 class="card-title" style="font-size: 25px;">แมวเป็นหวัดทำยังไงดี</h5>
+				<p class="card-text" style="font-size: 16px;">โรคทางเดินหายใจส่วนบนที่พบบ่อยในแมว จัดเป็นโรคติดต่อจากสัตว์สู่สัตว์...
+</p>
+				<div class="d-flex justify-content-center">
+					<a href="../Pet_Health/cat/click_lernmore_cat/click_page_pethealth_cat_page_content_1.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+			<img class="card-img-top zoom"  src="../Pet_Breeds/photobreeds/documenttory_pom.png" alt="photo" style="aspect-ratio:16/9;border-radius: 2rem;">
+			<div class="card-body">
+				<h5 class="card-title" style="font-size: 25px;">สุนัขพันธ์ุปอมเมอเรเนียน</h5>
+				<p class="card-text" style="font-size: 16px;">ปอมเมอเรเนียนเป็นสุนัขขนาดเล็กที่มีขนฟูนุ่ม น่ารัก
+			    และเต็มไปด้วยพลังงาน... </p>
+				<div class="d-flex justify-content-center">
+					<a href="../Pet_Breeds/Pet_Breeds_dog/pomeranian_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="card m-auto "  style="width: 30%;border-radius: 2rem;">
+			<img class="card-img-top zoom" src="../Pet_Health/PETHEALT_DOG_PHOTO_HEADCONTENT/fi1.png" alt="photo" style="aspect-ratio:16/9;border-radius: 2rem;">
+			<div class="card-body">
+				<h5 class="card-title" style="font-size: 25px;">โรคไข้ฉี่หนูในสุนัข...</h5>
+				<p class="card-text" style="font-size: 16px;">การป้องกันโรคฉี่หนูในสุนัขสามารถทำได้โดยการให้วัคซีน...</p>
+				<div class="d-flex justify-content-center">
+					<a href="../Pet_Health/dog/click_lernmore_dog/click_page_pethealth_dog_page_content_1.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+	<br>
+<br>
+<br>
+<br>
+<br>
+	<section style="background: var(--blue);" class="d-flex align-items-center justify-content-center flex-wrap py-5">
+		<div class="text-center mb-4 mb-md-0">
+			<img src="../Photo/icon_hart.png" alt="หัวใจ" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+		</div>
+		<div class="display-1 text-white text-center mx-4 fw-bold">Pets Health Care</div>
+	</section>
+
+	<section class="py-4" style="background: var(--blue);">
+		<div style="width: 100%;" class="d-flex justify-content-center">
+			<div class="bg-white rounded-pill py-3 px-4 d-flex flex-wrap justify-content-center align-items-center gap-4">
+				<div class="tag-item">
+					<a href="../Pet_Health/cat/click_lernmore_cat/click_page_pethealth_cat_page_content_1.html" 
+					   class="text-decoration-none fw-bold fs-4 tag-link">#โรคหวัดแมว</a>
+				</div>
+				<div class="tag-item">
+					<a href="../Pet_Health/dog/click_lernmore_dog/click_page_pethealth_dog_page_content_1.html" 
+					   class="text-decoration-none fw-bold fs-4 tag-link">#โรคฉี่หนูในสุนัข</a>
+				</div>
+				<div class="tag-item">
+					<a href="../Pet_Health/cat/click_lernmore_cat/click_page_pethealth_cat_page_content_3.html" 
+					   class="text-decoration-none fw-bold fs-4 tag-link">#โรคตาอักเสบในแมว</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container d-flex justify-content-start mt-5 mb-5" id="dogzone">
+		<div class="display-1 font-weight-bold shadow-text-header">Dog Zone</div>
+	</section>
+	<br>
+	
+	<section class="d-flex">
+		<div style="width: 40%;">
+			<img src="../Photo/DOGPROFILE.png" alt="Dogzone" style="width: 100%;height: 370px;object-fit: cover;border-top-right-radius: 50px;border-bottom-right-radius: 50px;">
+		</div>
+		
+		<div style="width: 60% card">
+		
+			<section class=" d-flex flex-wrap ">
+
+				<div class="card m-auto " style="width: 40%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Health/PETHEALT_DOG_PHOTO_HEADCONTENT/2.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ไข้หัดสุนัข ป้องกันและรักษา...</h5>
+						<p class="card-text" style="font-size: 16px;">เป็นโรคติดต่อร้ายแรงของสุนัข ... </p>
+						<div class="d-flex justify-content-strat">
+							<a href="../Pet_Health/dog/click_lernmore_dog/click_page_pethealth_dog_page_content_2.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="card m-auto " style="width: 40%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Health/PETHEALT_DOG_PHOTO_HEADCONTENT/7.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ไตสุขภาพดีคือชีวิตที่ยืนยาว</h5>
+						<p class="card-text" style="font-size: 16px;">ไตสุนัขทำหน้าที่สำคัญในการกำจัดของเสีย...</p>
+						<div class="d-flex justify-content-strat">
+							<a href="../Pet_Health/dog/click_lernmore_dog/click_page_pethealth_dog_page_content_7.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+	
+<br>
+<br>
+			<section class="d-flex flex-wrap ">
+
+				<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Breeds/photobreeds/documentory_corki.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ลักษณะสายพันธุ์ และการดูแล : <br>
+สุนัขพันธุ์เวลส์ คอร์กี้</h5>
+						<p class="card-text" style="font-size: 16px;">สุนัขพันธุ์เล็กที่มีถิ่นกำเนิดจาก ประเทศอังกษ...</p>
+						<div class="d-flex justify-content-start">
+							<a href="../Pet_Breeds/Pet_Breeds_dog/welsh corgi_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Breeds/photobreeds/documentory_shiba.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ลักษณะสายพันธุ์ และการดูแล : <br>
+สุนัขพันธุ์ชิบะ อินุ</h5>
+						<p class="card-text" style="font-size: 16px;">ชิบะเป็นสุนัขสายพันธุ์ดั้งเดิมของประเทศญี่ปุ่น...</p>
+						<div class="d-flex justify-content-start">
+							<a href="../Pet_Breeds/Pet_Breeds_dog/shiba inu_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Breeds/photobreeds/documentory_saiberai.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ลักษณะสายพันธุ์ และการดูแล :<br>
+ สุนัขพันธุ์ไซบีเรียน ฮัสกี </h5>
+						<p class="card-text" style="font-size: 16px;">ไซบีเรียน ฮัสกีมีถิ่นกำเนิดในประเทศรัสเซีย...</p>
+						<div class="d-flex justify-content-start">
+							<a href="../Pet_Breeds/Pet_Breeds_dog/siberian husky_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+			</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+		<div class="d-flex justify-content-center align-items-center">
+			<div style="width: 40%;background-color:var(--blue);height: 2px;position:relative;"></div>
+			<div style="width: 40%;background-color:var(--blue);height: 2px;position:relative;"></div>
+		</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+	<section class="container d-flex justify-content-end mb-5" id="catzone">
+		<div class="display-1 font-weight-bold shadow-text-header" >Cat Zone</div>
+	</section>
+<br>
+	
+	
+	<section class="d-flex">
+		
+		
+		<div style="width: 60% card">
+		
+			<section class=" d-flex flex-wrap ">
+
+				<div class="card m-auto " style="width: 40%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Health/PETHEALT_CAT_PHOTO_HEADCONTENT/6.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;object-fit: cover;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">โรคกระเพาะปัสสาวะอักเสบ
+</h5>
+						<p class="card-text" style="font-size: 16px;">กระเพาะปัสสาวะอักเสบรุนแรงถึง...</p>
+						<div class="d-flex justify-content-strat">
+							<a href="../Pet_Health/cat/click_lernmore_cat/click_page_pethealth_cat_page_content_5.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="card m-auto " style="width: 40%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Health/PETHEALT_CAT_PHOTO_HEADCONTENT/3.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">แมวเป็นเชื้อรา!</h5>
+						<p class="card-text" style="font-size: 16px;">การติดเชื้อราที่ผิวหนังของแมวทำให้ขนร่วง...</p>
+						<div class="d-flex justify-content-strat">
+							<a href="../Pet_Health/cat/click_lernmore_cat/click_page_pethealth_cat_page_content_2.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div style="width: 40%;">
+			<img src="../Photo/CATPROFILE.png" alt="Dogzone" style="width: 100%;height: 370px;object-fit: cover;border-top-left-radius: 50px;border-bottom-left-radius: 50px;">
+		</div>
+	</section>
+	<br>
+<br>
+
+	
+	<section class="d-flex flex-wrap ">
+
+				<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Breeds/photobreeds/documentory_persian.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ลักษณะสายพันธุ์ และการดูแล : <br>แมวพันธุ์เปอร์เซีย
+</h5>
+						<p class="card-text" style="font-size: 16px;">แมวเปอร์เซียเป็นแมวขนยาวที่มีถิ่นกำเนิดในประเทศอิหร่าน...</p>
+						<div class="d-flex justify-content-start">
+							<a href="../Pet_Breeds/Pet_Breeds_cat/persian_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Breeds/photobreeds/documentory_britishshorthair.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ลักษณะสายพันธุ์ และการดูแล : <br>แมวพันธุ์บริติช ช็อตแฮร์ 
+</h5>
+						<p class="card-text" style="font-size: 16px;">แมวพันธุ์บริติช ช็อตแฮร์ มีถิ่นกำเนิดจากประเทศอังกฤษ...</p>
+						<div class="d-flex justify-content-start">
+							<a href="../Pet_Breeds/Pet_Breeds_cat/british shorthair_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="card m-auto " style="width: 30%;border-radius: 2rem;">
+					<img class="card-img-top w-100 zoom" src="../Pet_Breeds/photobreeds/documentory_american shorthair.png" alt="photo" style="object-fit: cover;height: 250px;border-radius: 2rem;">
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 25px;">ลักษณะสายพันธุ์ และการดูแล : <br>แมวพันธุ์อเมริกัน ช็อตแฮร์ 
+</h5>
+						<p class="card-text" style="font-size: 16px;">แมวพันธุ์อเมริกัน ช็อตแฮร์ มีถิ่นกำเนิดที่ทวีปอเมริกาเหนือ...
+</p>
+						<div class="d-flex justify-content-start">
+							<a href="../Pet_Breeds/Pet_Breeds_cat/american shorthair_petbreeds_page.html" class="btn btn-primary " style="font-size:16px;">อ่านต่อ</a>
+						</div>
+					</div>
+				</div>
+			</section>
+	<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+	<section class="container d-flex justify-content-center">
+		<div class="display-1 font-weight-bold shadow-text-header" id="contactus">Contact Us</div>
+	</section>
+	<br>
+
+	
+	<section class="d-flex justify-content-between container " style="border: none;">
+	
+		
+		<div class="contactusandmap1  d-flex justify-content-center align-items-center" style=" background: var(--whiteblue);;width: 50%;box-shadow: 0 0 1px #000;border-top-left-radius: 2rem;border-bottom-left-radius: 2rem;opacity: 0.9;" >
+			<form action="https://api.web3forms.com/submit" method="POST" class="contact-left d-flex flex-column align-items-center w-auto" style="gap:20px;"> 
+				 <input type="hidden" name="access_key" value="bcb178a1-db2d-4b7f-876e-25d113170ffd">
+				 <input type="text" name="name" placeholder="  Name" class="contact-inputs w-auto" style="font-size: 20px;border: solid 3px var(--blue);border-radius: 50px;" required>
+				 <input type="email" name="email" placeholder="  Email" class="contact-inputs w-auto" style="font-size: 20px;border: solid 3px var(--blue);border-radius: 50px;" required>
+				 <textarea name="message" placeholder="  Message..." class="contact-inputs w-auto" required style="height: 140px;padding-top: 15px;border-radius: 20px;font-size: 20px;border: solid 3px var(--blue);"></textarea>
+				 <button type="submit" style="font-size: 25px;background: var(--blue);color: #fff;border-radius: 50px;" class="btn zoom">Send</button>
+			</form>
+		</div>
+		
+		<div style="width: 50%;box-shadow: 0 0 1px #000;border-top-right-radius: 2rem;border-bottom-right-radius: 2rem;border: none;" class="contactusandmap2">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61930.977187499884!2d100.65583542167967!3d14.0366133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d78a4a8713c3f%3A0xf019238243532a0!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4LmA4LiX4LiE4LmC4LiZ4LmC4Lil4Lii4Li14Lij4Liy4LiK4Lih4LiH4LiE4Lil4LiY4Lix4LiN4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1740556805035!5m2!1sth!2sth" width="600" height="450" style="border:0;width:100%;box-shadow: 0 0 1px #000;border-top-right-radius: 2rem;border-bottom-right-radius: 2rem;border: none;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		
+		</div>
+	</section>
+
+	
+	
+	
+	<br>
+	<br>
+	<br>
+
+
+	
+	
+
+
+
+	<footer style="background: var(--blue);" class="d-flex justify-content-between align-items-center p-5" >
+		<div class="d-flex flex-column pl-5 pt-5" style="color: #fff">
+			<h2 class="pt-3 text-center">เพราะสัตว์เลี้ยงคือสมาชิกในครอบครัว<br>
+
+เราจึงใส่ใจทุกรายละเอียดของการเลี้ยงดู</h2>
+			
+		</div>
+		
+		<div style="font-size: 20px;">
+			<ul class="list-unstyled">
+				<li><a href="../Pet_Health/cat/page_pethealth_cat_page1.html" style="color: #fff;text-decoration: none;">Pet Health</a></li>
+				<li><a href="../Pet_Modeling/Pet_modeling_page/petmodeling_allpet_page.html" style="color: #fff;text-decoration: none;">Pet Modeling</a></li>
+				<li><a href="../Pet_Breeds/page_petbreeds_page.html" style="color: #fff;text-decoration: none;">Pet Breeds</a></li>
+				<li><a href="#dogzone" style="color: #fff;text-decoration: none;">Dog Zone</a></li>
+				<li><a href="#catzone" style="color: #fff;text-decoration: none;">Cat Zone</a></li>
+			</ul>
+		
+		</div>
+		
+		<div style="color: #fff; font-size: 20px;padding-right: 2rem">
+			<ul class="list-unstyled">
+				<li class="font-weight-light">รับข่าวสาร</li>
+			
+			</ul>
+			
+			<form class="input-group w-auto">
+				<input type="email" placeholder=" email" style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;">
+				<input type="button" value="Go" style="border-top-right-radius: 20px;border-bottom-right-radius: 20px;cursor: pointer;"  onclick="showAlert()">
+				<script>
+					function showAlert() {
+						
+						Swal.fire({
+							title: 'ขอบคุณ!',
+							text: '',
+							icon: 'success',
+							confirmButtonText: 'ตกลง',
+						
+						});
+						
+					}
+    			</script>
+			</form>
+
+		</div>
+		
+	</footer>
+	
+	<div style="height: 50px;background: var(--blue)" class="d-flex justify-content-center align-items-center">
+		<div class="text-white font-weight-light">© PET MENTOR 2025</div>
+	</div>
+	
+	<!-- Start To-Top -->
+	<a href="#" class="to-top">
+		<i class="fa-solid fa-eject"></i>
+	</a>
+	<!-- End To-Top -->
+		
+	
+	
+	
+
+<script>
+	/* เปิด / ปิด ham-menu */
+	let menu = document.querySelector('#menu-bars');
+		let navbar = document.querySelector('.navbar');
+		
+		menu.onclick = () =>{
+			menu.classList.toggle('fa-times');
+			navbar.classList.toggle('active');
+		}
+
+	window.onscroll = () =>{
+			menu.classList.remove('fa-times');
+			navbar.classList.remove('active');
+		}
+		
+		document.querySelector('#search-icon').onclick = () =>{
+			document.querySelector('#search-form').classList.toggle('active')
+			
+		}
+		
+		document.querySelector('#close').onclick = () =>{
+			document.querySelector('#search-form').classList.remove('active')
+			
+		}
+	
+	/*start top-to */
+	const toTop = document.querySelector(".to-top");
+	
+	window.addEventListener("scroll", () => {
+		if(window.pageYOffset > 100) {
+			toTop.classList.add("active");
+		}else{
+			toTop.classList.remove("active");
+		}
+	})
+	/*end top-to */
+	
+</script>
+
+	
+</body>
+	
+</html>
+ 
